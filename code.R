@@ -42,19 +42,54 @@ names(Frequency_Card_Swipes)[1] <- "PATRONID" #Change column name
 
 size_ID <- length(Frequency_Card_Swipes$PATRONID)
 
-#Top 25%
-top_25 <- as.integer(size_ID *0.25)
-top_25 <- Frequency_Card_Swipes[0:top_25,]
+#Create the Top and Bottom 10% to 50%, in 5% increments
 
-#Bottom 25%
-bottom_25 <- as.integer(size_ID *0.75)
-bottom_25 <- Frequency_Card_Swipes[bottom_25:size_ID,]
-
-#Top 10%
+#Top/Bottom 10%
 top_10 <- as.integer(size_ID * 0.10)
 top_10 <- Frequency_Card_Swipes[0:top_10,]
-
-#Bottom 10%
 bottom_10 <- as.integer(size_ID *.9)
 bottom_10 <- Frequency_Card_Swipes[bottom_10:size_ID,]
+#Top/Bottom 15%
+top_15 <- as.integer(size_ID * 0.15)
+top_15 <- Frequency_Card_Swipes[0:top_15,]
+bottom_15 <- as.integer(size_ID *.85)
+bottom_15 <- Frequency_Card_Swipes[bottom_15:size_ID,]
+#Top/Bottom 20%
+top_20 <- as.integer(size_ID * 0.20)
+top_20 <- Frequency_Card_Swipes[0:top_20,]
+bottom_20 <- as.integer(size_ID *.8)
+bottom_20 <- Frequency_Card_Swipes[bottom_20:size_ID,]
+#Top/Bottom 25%
+top_25 <- as.integer(size_ID *0.25)
+top_25 <- Frequency_Card_Swipes[0:top_25,]
+bottom_25 <- as.integer(size_ID *0.75)
+bottom_25 <- Frequency_Card_Swipes[bottom_25:size_ID,]
+#Top/Bottom 30%
+top_30 <- as.integer(size_ID * 0.30)
+top_30 <- Frequency_Card_Swipes[0:top_30,]
+bottom_30 <- as.integer(size_ID *.7)
+bottom_30 <- Frequency_Card_Swipes[bottom_30:size_ID,]
+#Top/Bottom 35%
+top_35 <- as.integer(size_ID * 0.35)
+top_35 <- Frequency_Card_Swipes[0:top_35,]
+bottom_35 <- as.integer(size_ID *.65)
+bottom_35 <- Frequency_Card_Swipes[bottom_35:size_ID,]
+#Top/Bottom 40%
+top_40 <- as.integer(size_ID * 0.40)
+top_40 <- Frequency_Card_Swipes[0:top_40,]
+bottom_40 <- as.integer(size_ID *.6)
+bottom_40 <- Frequency_Card_Swipes[bottom_40:size_ID,]
+#Top/Bottom 45%
+top_45 <- as.integer(size_ID * 0.45)
+top_45 <- Frequency_Card_Swipes[0:top_45,]
+bottom_45 <- as.integer(size_ID *.55)
+bottom_45 <- Frequency_Card_Swipes[bottom_45:size_ID,]
+#Top/Bottom 50%
+top_50 <- as.integer(size_ID *0.50)
+top_50 <- Frequency_Card_Swipes[0:top_50,]
+bottom_50 <- as.integer(size_ID*0.50)
+bottom_50 <- Frequency_Card_Swipes[bottom_50:size_ID,]
+
+
+
 
