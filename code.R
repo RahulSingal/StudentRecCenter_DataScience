@@ -12,7 +12,7 @@ Card_Swipes <- subset(Card_Swipes, select = -c(REASONTYPE, REASONMSG))
 #DemoGraphics contains the data for all the demographics of card swipes from 2012-08-17 to 2015-08-17
 #Columns: TRANSID, TRANDATE, PATRONID.x, PATRONID.y, sex, student_flag, record_term, academic_level, acad_plan_descr, adj_admit_type, admit_term, HOUSING_TYPE
 #There are a total 1,048,575 observations
-DemoGraphics = read.csv("DS_ClassProject_Fall2018_data/Demographics.csv")
+DemoGraphics = as.data.frame(read.csv("DS_ClassProject_Fall2018_data/Demographics.csv"))
 
 #We do not care about the TRANSID, student_flag, adj_admit_type, admit_term, and HOUSING_TYPE, so we will remove these 5 columns
 DemoGraphics <- subset(DemoGraphics, select = -c(TRANSID, student_flag, adj_admit_type, admit_term, HOUSING_TYPE))
@@ -31,13 +31,13 @@ DemoGraphics <- subset(DemoGraphics, select = -c(TRANSID, student_flag, adj_admi
 # 7. acad_plan_descr - Change column name to major
 
 #saves the total unique PATRONID in the card swipe data
-number_of_unique_ID_card_swipe <- length(unique(Card_Swipes$PATRONID))
+number_of_unique_ID_card_swipe <- length(unique(DemoGraphics$PATRONID.x))
 
 #Makes a dataframe that has the Unique PATRONID and the frequency in the dataset
-UniqueID_Frequency_Card_Swipes <- as.data.frame(table(Card_Swipes$PATRONID))
+UniqueID_Frequency_Card_Swipes <- as.data.frame(table(DemoGraphics$PATRONID.x))
 
 #Sort UniqueID_Frequency_Card_Swips by frequency (Ascending order)
-Frequency_Card_Swipes <- UniqueID_Frequency_Card_Swipes[order(-UniqueID_Frequency_Card_Swipes$Freq), ]
+Frequency_Card_Swipes <- as.data.frame(UniqueID_Frequency_Card_Swipes[order(-UniqueID_Frequency_Card_Swipes$Freq), ])
 names(Frequency_Card_Swipes)[1] <- "PATRONID" #Change column name
 
 size_ID <- length(Frequency_Card_Swipes$PATRONID)
@@ -90,6 +90,24 @@ top_50 <- Frequency_Card_Swipes[0:top_50,]
 bottom_50 <- as.integer(size_ID*0.50)
 bottom_50 <- Frequency_Card_Swipes[bottom_50:size_ID,]
 
+Range <- c(1:750)
+means <- mean(top_10$Freq) 
+means <- c(means, mean(top_20$Freq))
+means <- c(means, mean(top_40$Freq))
+
+plot(Range, means, main="Plz")
+
+#Make a plot of the means of the top and bottoms
+
+#This guy frequents ? times -> DemoGraphics[1000007,]
+patron <- 367416
+
+#This guys frequents ? times
+patron1 <- 299255
 
 
+student1 <- DemoGraphics[DemoGraphics$PATRONID.x == patron1, ]
 
+#This gives me all the instances with patrons transactions at the gym (102)
+student <- DemoGraphics[DemoGraphics$PATRONID.x == patron, ]
+student <- student[0:93,]
