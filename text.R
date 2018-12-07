@@ -4,11 +4,10 @@ library(expss)
 
 DemoGraphics = as.data.frame(read.csv("DS_ClassProject_Fall2018_data/Demographics.csv"))
 
+
 # We do not care about the TRANSID, student_flag, adj_admit_type, admit_term, and HOUSING_TYPE, 
 #                                                             so we will remove these 5 columns
 DemoGraphics <- subset(DemoGraphics, select = -c(TRANSID, student_flag, adj_admit_type, admit_term, HOUSING_TYPE))
-
-DemoGraphics$TRANDATE <- as.POSIXct(DemoGraphics$TRANDATE, format = "%Y-%m-%d %I:%M:%S")
 
 # Seperates by semester
 new = by(DemoGraphics, DemoGraphics[,"record_term"], function(x) x)
@@ -93,6 +92,12 @@ Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[3],])
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[4],])
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[5],])
+#PatronID's are - 324966, 334766, 227770, 239720, 334556
+Fall2012_Times_Frequent <- Fall2012[Fall2012$PATRONID.x == 324966, ]
+Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 334766, ])
+Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 227770, ])
+Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 239720, ])
+Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 334556, ])
 
 ##### Makes the Data Structures that holds the information on each Random Mod Frequent User
 Fall2012_All_Mod_Frequent <- Fall2012_Mod_Frequent[Mod_Frequent_Random[1],]
@@ -100,6 +105,12 @@ Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequ
 Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[3],])
 Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[4],])
 Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[5],])
+#PatronID's are - 217761, 336354, 69626, 234304, 299160
+Fall2012_Times_Mod_Frequent <- Fall2012[Fall2012$PATRONID.x == 217761, ]
+Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 336354, ])
+Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 69626, ])
+Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 234304, ])
+Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 299160, ])
 
 ##### Makes the Data Structures that holds the information on each Ocassional User
 Fall2012_All_Ocassional <- Fall2012_Ocassional[Ocassional_Random[1],]
@@ -107,6 +118,12 @@ Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Oc
 Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[3],])
 Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[4],])
 Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[5],])
+#PatronID's are - 271266, 332232, 244398, 70295, 242952
+Fall2012_Times_Ocassional <- Fall2012[Fall2012$PATRONID.x == 271266, ]
+Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 332232, ])
+Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 244398, ])
+Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 70295, ])
+Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 242952, ])
 
 ##### Makes the Data Structures that holds the information on each Infrequent User
 Fall2012_All_Infrequent <- Fall2012_Infrequent[Infrequent_Random[1],]
@@ -120,6 +137,9 @@ Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 278184, ])
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 269094, ])
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 298347, ])
+
+#Peak times are between 3-730pm, seperate TRANDATE into DATE and TIME. Compare time with >=14:00:00 & <=19:30:00
+
 
 
 patron <- 332738 #Went 158 times
