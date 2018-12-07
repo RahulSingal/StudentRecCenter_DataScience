@@ -114,9 +114,12 @@ Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[In
 Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[3],])
 Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[4],])
 Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[5],])
-
-
-
+#PatronID's are - 317892, 80261, 278184, 269094, 298347
+Fall2012_Times_Infrequent <- Fall2012[Fall2012$PATRONID.x == 317892, ]
+Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 80261, ])
+Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 278184, ])
+Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 269094, ])
+Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 298347, ])
 
 
 patron <- 332738 #Went 158 times
