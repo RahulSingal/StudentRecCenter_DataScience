@@ -24,7 +24,6 @@ Spring2015 = new[[8]] ## Spring 2015 [2015-01-12 to 2015-05-10]
 Summer2015 = new[[9]] ## Summer 2015 [2015-05-11 to 2015-08-13] 
 Fall2015 = new[[10]] ## Fall 2015 [INCOMPLETE. ONLY 3 DAYS]
 
-
 sumation <- length(Fall2012$TRANDATE) + length(Spring2013$TRANDATE) + length(Fall2013$TRANDATE) + length(Spring2014$TRANDATE) +
             length(Fall2014$TRANDATE) + length(Spring2015$TRANDATE) + length(Fall2015$TRANDATE) + length(Summer2013$TRANDATE) +
             length(Summer2014$TRANDATE) + length(Summer2015$TRANDATE)
@@ -62,8 +61,62 @@ Summer2015_Unique_Swipes <- as.data.frame((table(Summer2015$PATRONID.x)))
 Summer2015_Freq_Count <- as.data.frame(Summer2015_Unique_Swipes[order(-Summer2015_Unique_Swipes$Freq), ])
 names(Summer2015_Freq_Count)[1] <- "PATRONID" #Change column name
 
+#############################################
 # Make tables for Fall 2012, Spring 2013, Summer 2013, Fall 2013, Spring 2014, Summer 2014, Fall 2014, Spring 2015, and Summer 2015
-# Include following columns: Swipes, Unique Swipes, Top 5 Frequencies, Frequent Range, Moderately Frequenct Range, Occassional Range, Infrequent Range
+# Include following columns: Swipes, Unique Swipes, Top 5 Frequencies, Frequent Range, Moderately Frequent Range, Occassional Range, Infrequent Range
+
+# Total_Swipes <- length(Fall2012$TRANDATE)
+# Unique_Swipes <- length(Fall2012_Unique_Swipes$Freq)
+# Top_5 <- Fall2012_Freq_Count[0:5,]$Freq
+# Frequent_Range = ?
+# Moderately_Frequent_Range = ?
+# Ocassional_Range = ?
+# Infrequent_Range = ?
+#############################################
+
+### Fall 2012 Frequency Profiles
+Fall2012_Frequent <- subset(Fall2012_Freq_Count, Freq<=160 & Freq>=100)
+Fall2012_Mod_Frequent <- subset(Fall2012_Freq_Count, Freq<=99 & Freq>=50)
+Fall2012_Ocassional <- subset(Fall2012_Freq_Count, Freq<=49 & Freq>=25)
+Fall2012_Infrequent <- subset(Fall2012_Freq_Count, Freq<=24 & Freq>=10)
+Fall2012_FatAsses <- subset(Fall2012_Freq_Count, Freq<=9 & Freq>=0)
+
+#Get the 5 randomly generated users based on the number of total users 
+Frequent_Random <- sample(1:length(Fall2012_Frequent$PATRONID), 5, replace=F)
+Mod_Frequent_Random <- sample(1:length(Fall2012_Mod_Frequent$PATRONID), 5, replace=F)
+Ocassional_Random <- sample(1:length(Fall2012_Ocassional$PATRONID), 5, replace=F)
+Infrequent_Random <- sample(1:length(Fall2012_Infrequent$PATRONID), 5, replace=F)
+
+##### Makes the Data Structures that holds the information on each Random Frequent User
+Fall2012_All_Frequent <- Fall2012_Frequent[Frequent_Random[1],]
+Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[2],])
+Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[3],])
+Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[4],])
+Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[5],])
+
+##### Makes the Data Structures that holds the information on each Random Mod Frequent User
+Fall2012_All_Mod_Frequent <- Fall2012_Mod_Frequent[Mod_Frequent_Random[1],]
+Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[2],])
+Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[3],])
+Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[4],])
+Fall2012_All_Mod_Frequent <- rbind(Fall2012_All_Mod_Frequent, Fall2012_Mod_Frequent[Mod_Frequent_Random[5],])
+
+##### Makes the Data Structures that holds the information on each Ocassional User
+Fall2012_All_Ocassional <- Fall2012_Ocassional[Ocassional_Random[1],]
+Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[2],])
+Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[3],])
+Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[4],])
+Fall2012_All_Ocassional <- rbind(Fall2012_All_Ocassional, Fall2012_Ocassional[Ocassional_Random[5],])
+
+##### Makes the Data Structures that holds the information on each Infrequent User
+Fall2012_All_Infrequent <- Fall2012_Infrequent[Infrequent_Random[1],]
+Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[2],])
+Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[3],])
+Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[4],])
+Fall2012_All_Infrequent <- rbind(Fall2012_All_Infrequent, Fall2012_Infrequent[Infrequent_Random[5],])
+
+
+
 
 
 patron <- 332738 #Went 158 times
