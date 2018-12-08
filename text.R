@@ -98,6 +98,12 @@ Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATR
 Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 227770, ])
 Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 239720, ])
 Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 334556, ])
+Fall2012_Times_Frequent = Fall2012_Times_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Fall2012_Frequent_Peak_Count <- subset(Fall2012_Times_Frequent, Time>="14:00:00" & Time<="19:30:00")
+Fall2012_Frequent_Peak_Percentage <- (length(Fall2012_Frequent_Peak_Count$Date) / length(Fall2012_Times_Frequent$Date)) 
+Fall2012_Frequent_Non_Peak_Percentage <- (1 - Fall2012_Frequent_Peak_Percentage) 
+Fall2012_Frequent_Peak_Percentage <- Fall2012_Frequent_Peak_Percentage * 100
+Fall2012_Frequent_Non_Peak_Percentage <- Fall2012_Frequent_Non_Peak_Percentage * 100
 
 ##### Makes the Data Structures that holds the information on each Random Mod Frequent User
 Fall2012_All_Mod_Frequent <- Fall2012_Mod_Frequent[Mod_Frequent_Random[1],]
@@ -111,6 +117,12 @@ Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2
 Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 69626, ])
 Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 234304, ])
 Fall2012_Times_Mod_Frequent <- rbind(Fall2012_Times_Mod_Frequent, Fall2012[Fall2012$PATRONID.x == 299160, ])
+Fall2012_Times_Mod_Frequent = Fall2012_Times_Mod_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Fall2012_Mod_Frequent_Peak_Count <- subset(Fall2012_Times_Mod_Frequent, Time>="14:00:00" & Time<="19:30:00")
+Fall2012_Mod_Frequent_Peak_Percentage <- (length(Fall2012_Mod_Frequent_Peak_Count$Date) / length(Fall2012_Times_Mod_Frequent$Date)) 
+Fall2012_Mod_Frequent_Non_Peak_Percentage <- (1 - Fall2012_Mod_Frequent_Peak_Percentage) 
+Fall2012_Mod_Frequent_Peak_Percentage <- Fall2012_Mod_Frequent_Peak_Percentage * 100
+Fall2012_Mod_Frequent_Non_Peak_Percentage <- Fall2012_Mod_Frequent_Non_Peak_Percentage * 100
 
 ##### Makes the Data Structures that holds the information on each Ocassional User
 Fall2012_All_Ocassional <- Fall2012_Ocassional[Ocassional_Random[1],]
@@ -124,6 +136,12 @@ Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$
 Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 244398, ])
 Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 70295, ])
 Fall2012_Times_Ocassional <- rbind(Fall2012_Times_Ocassional, Fall2012[Fall2012$PATRONID.x == 242952, ])
+Fall2012_Times_Ocassional = Fall2012_Times_Ocassional %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Fall2012_Ocassional_Peak_Count <- subset(Fall2012_Times_Ocassional, Time>="14:00:00" & Time<="19:30:00")
+Fall2012_Ocassional_Peak_Percentage <- (length(Fall2012_Ocassional_Peak_Count$Date) / length(Fall2012_Times_Ocassional$Date)) 
+Fall2012_Ocassional_Non_Peak_Percentage <- (1 - Fall2012_Ocassional_Peak_Percentage) 
+Fall2012_Ocassional_Peak_Percentage <- Fall2012_Ocassional_Peak_Percentage * 100
+Fall2012_Ocassional_Non_Peak_Percentage <- Fall2012_Ocassional_Non_Peak_Percentage * 100
 
 ##### Makes the Data Structures that holds the information on each Infrequent User
 Fall2012_All_Infrequent <- Fall2012_Infrequent[Infrequent_Random[1],]
@@ -137,9 +155,164 @@ Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 278184, ])
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 269094, ])
 Fall2012_Times_Infrequent <- rbind(Fall2012_Times_Infrequent, Fall2012[Fall2012$PATRONID.x == 298347, ])
+Fall2012_Times_Infrequent = Fall2012_Times_Infrequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Fall2012_Infrequent_Peak_Count <- subset(Fall2012_Times_Infrequent, Time>="14:00:00" & Time<="19:30:00")
+Fall2012_Infrequent_Peak_Percentage <- (length(Fall2012_Infrequent_Peak_Count$Date) / length(Fall2012_Times_Infrequent$Date)) 
+Fall2012_Infrequent_Non_Peak_Percentage <- (1 - Fall2012_Infrequent_Peak_Percentage) 
+Fall2012_Infrequent_Peak_Percentage <- Fall2012_Infrequent_Peak_Percentage * 100
+Fall2012_Infrequent_Non_Peak_Percentage <- Fall2012_Infrequent_Non_Peak_Percentage * 100
+
+
+
+
+
+### Fall 2013 Frequency Profiles
+Spring2013_Frequent <- subset(Spring2013_Freq_Count, Freq<=175 & Freq>=100)
+Spring2013_Mod_Frequent <- subset(Spring2013_Freq_Count, Freq<=99 & Freq>=50)
+Spring2013_Ocassional <- subset(Spring2013_Freq_Count, Freq<=49 & Freq>=25)
+Spring2013_Infrequent <- subset(Spring2013_Freq_Count, Freq<=24 & Freq>=10)
+Spring2013_FatAsses <- subset(Spring2013_Freq_Count, Freq<=9 & Freq>=0)
+
+#Get the 5 randomly generated users based on the number of total users 
+Frequent_Random <- sample(1:length(Spring2013_Frequent$PATRONID), 5, replace=F)
+Mod_Frequent_Random <- sample(1:length(Spring2013_Mod_Frequent$PATRONID), 5, replace=F)
+Ocassional_Random <- sample(1:length(Spring2013_Ocassional$PATRONID), 5, replace=F)
+Infrequent_Random <- sample(1:length(Spring2013_Infrequent$PATRONID), 5, replace=F)
+
+##### Makes the Data Structures that holds the information on each Random Frequent User
+Spring2013_All_Frequent <- Spring2013_Frequent[Frequent_Random[1],]
+Spring2013_All_Frequent <- rbind(Spring2013_All_Frequent, Spring2013_Frequent[Frequent_Random[2],])
+Spring2013_All_Frequent <- rbind(Spring2013_All_Frequent, Spring2013_Frequent[Frequent_Random[3],])
+Spring2013_All_Frequent <- rbind(Spring2013_All_Frequent, Spring2013_Frequent[Frequent_Random[4],])
+Spring2013_All_Frequent <- rbind(Spring2013_All_Frequent, Spring2013_Frequent[Frequent_Random[5],])
+#PatronID's are - 333880, 335680, 295869, 296416, 205604
+Spring2013_Times_Frequent <- Spring2013[Spring2013$PATRONID.x == 333880, ]
+Spring2013_Times_Frequent <- rbind(Spring2013_Times_Frequent, Spring2013[Spring2013$PATRONID.x == 335680, ])
+Spring2013_Times_Frequent <- rbind(Spring2013_Times_Frequent, Spring2013[Spring2013$PATRONID.x == 295869, ])
+Spring2013_Times_Frequent <- rbind(Spring2013_Times_Frequent, Spring2013[Spring2013$PATRONID.x == 296416, ])
+Spring2013_Times_Frequent <- rbind(Spring2013_Times_Frequent, Spring2013[Spring2013$PATRONID.x == 205604, ])
+Spring2013_Times_Frequent = Spring2013_Times_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Spring2013_Frequent_Peak_Count <- subset(Spring2013_Times_Frequent, Time>="14:00:00" & Time<="19:30:00")
+Spring2013_Frequent_Peak_Percentage <- (length(Spring2013_Frequent_Peak_Count$Date) / length(Spring2013_Times_Frequent$Date)) 
+Spring2013_Frequent_Non_Peak_Percentage <- (1 - Spring2013_Frequent_Peak_Percentage) 
+Spring2013_Frequent_Peak_Percentage <- Spring2013_Frequent_Peak_Percentage * 100
+Spring2013_Frequent_Non_Peak_Percentage <- Spring2013_Frequent_Non_Peak_Percentage * 100
+
+##### Makes the Data Structures that holds the information on each Random Mod Frequent User
+Spring2013_All_Mod_Frequent <- Spring2013_Mod_Frequent[Mod_Frequent_Random[1],]
+Spring2013_All_Mod_Frequent <- rbind(Spring2013_All_Mod_Frequent, Spring2013_Mod_Frequent[Mod_Frequent_Random[2],])
+Spring2013_All_Mod_Frequent <- rbind(Spring2013_All_Mod_Frequent, Spring2013_Mod_Frequent[Mod_Frequent_Random[3],])
+Spring2013_All_Mod_Frequent <- rbind(Spring2013_All_Mod_Frequent, Spring2013_Mod_Frequent[Mod_Frequent_Random[4],])
+Spring2013_All_Mod_Frequent <- rbind(Spring2013_All_Mod_Frequent, Spring2013_Mod_Frequent[Mod_Frequent_Random[5],])
+#PatronID's are - 238039, 205391, 295465, 197175, 334995
+Spring2013_Times_Mod_Frequent <- Spring2013[Spring2013$PATRONID.x == 205391, ]
+Spring2013_Times_Mod_Frequent <- rbind(Spring2013_Times_Mod_Frequent, Spring2013[Spring2013$PATRONID.x == 238039, ])
+Spring2013_Times_Mod_Frequent <- rbind(Spring2013_Times_Mod_Frequent, Spring2013[Spring2013$PATRONID.x == 295465, ])
+Spring2013_Times_Mod_Frequent <- rbind(Spring2013_Times_Mod_Frequent, Spring2013[Spring2013$PATRONID.x == 197175, ])
+Spring2013_Times_Mod_Frequent <- rbind(Spring2013_Times_Mod_Frequent, Spring2013[Spring2013$PATRONID.x == 334995, ])
+Spring2013_Times_Mod_Frequent = Spring2013_Times_Mod_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Spring2013_Mod_Frequent_Peak_Count <- subset(Spring2013_Times_Mod_Frequent, Time>="14:00:00" & Time<="19:30:00")
+Spring2013_Mod_Frequent_Peak_Percentage <- (length(Spring2013_Mod_Frequent_Peak_Count$Date) / length(Spring2013_Times_Mod_Frequent$Date)) 
+Spring2013_Mod_Frequent_Non_Peak_Percentage <- (1 - Spring2013_Mod_Frequent_Peak_Percentage) 
+Spring2013_Mod_Frequent_Peak_Percentage <- Spring2013_Mod_Frequent_Peak_Percentage * 100
+Spring2013_Mod_Frequent_Non_Peak_Percentage <- Spring2013_Mod_Frequent_Non_Peak_Percentage * 100
+
+##### Makes the Data Structures that holds the information on each Ocassional User
+Spring2013_All_Ocassional <- Spring2013_Ocassional[Ocassional_Random[1],]
+Spring2013_All_Ocassional <- rbind(Spring2013_All_Ocassional, Spring2013_Ocassional[Ocassional_Random[2],])
+Spring2013_All_Ocassional <- rbind(Spring2013_All_Ocassional, Spring2013_Ocassional[Ocassional_Random[3],])
+Spring2013_All_Ocassional <- rbind(Spring2013_All_Ocassional, Spring2013_Ocassional[Ocassional_Random[4],])
+Spring2013_All_Ocassional <- rbind(Spring2013_All_Ocassional, Spring2013_Ocassional[Ocassional_Random[5],])
+#PatronID's are - 296839, 340553, 280702, 247148, 244004
+Spring2013_Times_Ocassional <- Spring2013[Spring2013$PATRONID.x == 296839, ]
+Spring2013_Times_Ocassional <- rbind(Spring2013_Times_Ocassional, Spring2013[Spring2013$PATRONID.x == 340553, ])
+Spring2013_Times_Ocassional <- rbind(Spring2013_Times_Ocassional, Spring2013[Spring2013$PATRONID.x == 280702, ])
+Spring2013_Times_Ocassional <- rbind(Spring2013_Times_Ocassional, Spring2013[Spring2013$PATRONID.x == 247148, ])
+Spring2013_Times_Ocassional <- rbind(Spring2013_Times_Ocassional, Spring2013[Spring2013$PATRONID.x == 244004, ])
+Spring2013_Times_Ocassional = Spring2013_Times_Ocassional %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Spring2013_Ocassional_Peak_Count <- subset(Spring2013_Times_Ocassional, Time>="14:00:00" & Time<="19:30:00")
+Spring2013_Ocassional_Peak_Percentage <- (length(Spring2013_Ocassional_Peak_Count$Date) / length(Spring2013_Times_Ocassional$Date)) 
+Spring2013_Ocassional_Non_Peak_Percentage <- (1 - Spring2013_Ocassional_Peak_Percentage) 
+Spring2013_Ocassional_Peak_Percentage <- Spring2013_Ocassional_Peak_Percentage * 100
+Spring2013_Ocassional_Non_Peak_Percentage <- Spring2013_Ocassional_Non_Peak_Percentage * 100
+
+##### Makes the Data Structures that holds the information on each Infrequent User
+Spring2013_All_Infrequent <- Spring2013_Infrequent[Infrequent_Random[1],]
+Spring2013_All_Infrequent <- rbind(Spring2013_All_Infrequent, Spring2013_Infrequent[Infrequent_Random[2],])
+Spring2013_All_Infrequent <- rbind(Spring2013_All_Infrequent, Spring2013_Infrequent[Infrequent_Random[3],])
+Spring2013_All_Infrequent <- rbind(Spring2013_All_Infrequent, Spring2013_Infrequent[Infrequent_Random[4],])
+Spring2013_All_Infrequent <- rbind(Spring2013_All_Infrequent, Spring2013_Infrequent[Infrequent_Random[5],])
+#PatronID's are - 326242, 300048, 334727, 333109, 225840
+Spring2013_Times_Infrequent <- Spring2013[Spring2013$PATRONID.x == 326242, ]
+Spring2013_Times_Infrequent <- rbind(Spring2013_Times_Infrequent, Spring2013[Spring2013$PATRONID.x == 300048, ])
+Spring2013_Times_Infrequent <- rbind(Spring2013_Times_Infrequent, Spring2013[Spring2013$PATRONID.x == 334727, ])
+Spring2013_Times_Infrequent <- rbind(Spring2013_Times_Infrequent, Spring2013[Spring2013$PATRONID.x == 333109, ])
+Spring2013_Times_Infrequent <- rbind(Spring2013_Times_Infrequent, Spring2013[Spring2013$PATRONID.x == 225840, ])
+Spring2013_Times_Infrequent = Spring2013_Times_Infrequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Spring2013_Infrequent_Peak_Count <- subset(Spring2013_Times_Infrequent, Time>="14:00:00" & Time<="19:30:00")
+Spring2013_Infrequent_Peak_Percentage <- (length(Spring2013_Infrequent_Peak_Count$Date) / length(Spring2013_Times_Infrequent$Date)) 
+Spring2013_Infrequent_Non_Peak_Percentage <- (1 - Spring2013_Infrequent_Peak_Percentage) 
+Spring2013_Infrequent_Peak_Percentage <- Spring2013_Infrequent_Peak_Percentage * 100
+Spring2013_Infrequent_Non_Peak_Percentage <- Spring2013_Infrequent_Non_Peak_Percentage * 100
+
+
+
+
+
+
+
+
+
 
 #Peak times are between 3-730pm, seperate TRANDATE into DATE and TIME. Compare time with >=14:00:00 & <=19:30:00
 
+x <- data.frame("GymType" = "Frequent", "Packedness" = "Peak", "Percentage" = Fall2012_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
+x <- rbind(x, list("ModFrequent", "Peak", Fall2012_Mod_Frequent_Peak_Percentage))
+x <- rbind(x, list("Ocassional", "Peak", Fall2012_Ocassional_Peak_Percentage))
+x <- rbind(x, list("Infrequent", "Peak", Fall2012_Infrequent_Peak_Percentage))
+y <- data.frame("GymType" = "Frequent", "Packedness" = "NonPeak", "Percentage" = Fall2012_Frequent_Non_Peak_Percentage, stringsAsFactors = FALSE)
+y <- rbind(y, list("ModFrequent", "NonPeak", Fall2012_Mod_Frequent_Non_Peak_Percentage))
+y <- rbind(y, list("Ocassional", "NonPeak", Fall2012_Ocassional_Non_Peak_Percentage))
+y <- rbind(y, list("Infrequent", "NonPeak", Fall2012_Infrequent_Non_Peak_Percentage))
+
+
+x1 <- data.frame("GymType" = "Frequent", "Packedness" = "Peak", "Percentage" = Spring2013_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
+x1 <- rbind(x1, list("ModFrequent", "Peak", Spring2013_Mod_Frequent_Peak_Percentage))
+x1 <- rbind(x1, list("Ocassional", "Peak", Spring2013_Ocassional_Peak_Percentage))
+x1 <- rbind(x1, list("Infrequent", "Peak", Spring2013_Infrequent_Peak_Percentage))
+y1 <- data.frame("GymType" = "Frequent", "Packedness" = "NonPeak", "Percentage" = Spring2013_Frequent_Non_Peak_Percentage, stringsAsFactors = FALSE)
+y1 <- rbind(y1, list("ModFrequent", "NonPeak", Spring2013_Mod_Frequent_Non_Peak_Percentage))
+y1 <- rbind(y1, list("Ocassional", "NonPeak", Spring2013_Ocassional_Non_Peak_Percentage))
+y1 <- rbind(y1, list("Infrequent", "NonPeak", Spring2013_Infrequent_Non_Peak_Percentage))
+
+
+x1$GymType <- factor(x1$GymType, levels=x1$GymType)
+y1$GymType <- factor(y1$GymType, levels=x1$GymType)
+
+#This will make sure that the order of gymtype is maintained by ggplot
+x$GymType <- factor(x$GymType, levels=x$GymType)
+y$GymType <- factor(y$GymType, levels=x$GymType)
+
+ColorPalette <- c("#c2e699", "#78c679", "#31a354","#006837")
+
+g <- ggplot(x, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
+    xlab("Packedness")+ylab("Percentages")+ggtitle("Peak Percentages in Fall 2012")+
+    scale_fill_manual(values=ColorPalette)
+
+
+h <- ggplot(x1, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
+  xlab("Packedness")+ylab("Percentages")+ggtitle("Peak Percentages in Spring 2013")+
+  scale_fill_manual(values=ColorPalette)
+
+
+
+g1 <- ggplot(y, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
+  xlab("Packedness")+ylab("Percentages")+ggtitle("Non Peak Percentages in Fall 2012")+
+  scale_fill_manual(values=ColorPalette)
+
+
+Fall2012_Times_Frequent = Fall2012_Times_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
+Fall2012_Peak_Count <- subset(Fall2012_Times_Frequent, Time>="14:00:00" & Time<="19:30:00")
 
 
 patron <- 332738 #Went 158 times
