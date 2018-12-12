@@ -73,26 +73,23 @@ names(Summer2015_Freq_Count)[1] <- "PATRONID" #Change column name
 # Infrequent_Range = ?
 #############################################
 
-### Fall 2012 Frequency Profiles
+##### Fall 2012 Frequency Profiles
 Fall2012_Frequent <- subset(Fall2012_Freq_Count, Freq<=160 & Freq>=100)
 Fall2012_Mod_Frequent <- subset(Fall2012_Freq_Count, Freq<=99 & Freq>=50)
 Fall2012_Ocassional <- subset(Fall2012_Freq_Count, Freq<=49 & Freq>=25)
 Fall2012_Infrequent <- subset(Fall2012_Freq_Count, Freq<=24 & Freq>=10)
-Fall2012_FatAsses <- subset(Fall2012_Freq_Count, Freq<=9 & Freq>=0)
-
-#Get the 5 randomly generated users based on the number of total users 
+#Get 5 randomly generated users based on the number of total users 
 Frequent_Random <- sample(1:length(Fall2012_Frequent$PATRONID), 5, replace=F)
 Mod_Frequent_Random <- sample(1:length(Fall2012_Mod_Frequent$PATRONID), 5, replace=F)
 Ocassional_Random <- sample(1:length(Fall2012_Ocassional$PATRONID), 5, replace=F)
 Infrequent_Random <- sample(1:length(Fall2012_Infrequent$PATRONID), 5, replace=F)
-
-##### Makes the Data Structures that holds the information on each Random Frequent User
+# Makes the Data Structures that holds the information on each Random Frequent User
 Fall2012_All_Frequent <- Fall2012_Frequent[Frequent_Random[1],]
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[2],])
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[3],])
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[4],])
 Fall2012_All_Frequent <- rbind(Fall2012_All_Frequent, Fall2012_Frequent[Frequent_Random[5],])
-#PatronID's are - 324966, 334766, 227770, 239720, 334556
+## PatronID's are - 324966, 334766, 227770, 239720, 334556
 Fall2012_Times_Frequent <- Fall2012[Fall2012$PATRONID.x == 324966, ]
 Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 334766, ])
 Fall2012_Times_Frequent <- rbind(Fall2012_Times_Frequent, Fall2012[Fall2012$PATRONID.x == 227770, ])
@@ -166,12 +163,11 @@ Fall2012_Infrequent_Non_Peak_Percentage <- Fall2012_Infrequent_Non_Peak_Percenta
 
 
 
-### Fall 2013 Frequency Profiles
+### Spring 2013 Frequency Profiles
 Spring2013_Frequent <- subset(Spring2013_Freq_Count, Freq<=175 & Freq>=100)
 Spring2013_Mod_Frequent <- subset(Spring2013_Freq_Count, Freq<=99 & Freq>=50)
 Spring2013_Ocassional <- subset(Spring2013_Freq_Count, Freq<=49 & Freq>=25)
 Spring2013_Infrequent <- subset(Spring2013_Freq_Count, Freq<=24 & Freq>=10)
-Spring2013_FatAsses <- subset(Spring2013_Freq_Count, Freq<=9 & Freq>=0)
 
 #Get the 5 randomly generated users based on the number of total users 
 Frequent_Random <- sample(1:length(Spring2013_Frequent$PATRONID), 5, replace=F)
@@ -258,35 +254,37 @@ Spring2013_Infrequent_Non_Peak_Percentage <- Spring2013_Infrequent_Non_Peak_Perc
 
 
 
-
-
-
-
-
-
 #Peak times are between 3-730pm, seperate TRANDATE into DATE and TIME. Compare time with >=14:00:00 & <=19:30:00
 
-x <- data.frame("GymType" = "Frequent", "Packedness" = "Peak", "Percentage" = Fall2012_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
-x <- rbind(x, list("ModFrequent", "Peak", Fall2012_Mod_Frequent_Peak_Percentage))
-x <- rbind(x, list("Ocassional", "Peak", Fall2012_Ocassional_Peak_Percentage))
-x <- rbind(x, list("Infrequent", "Peak", Fall2012_Infrequent_Peak_Percentage))
+x <- data.frame("GymType" = "Frequent", "Semester" = "Fall2012", "Percentage" = Fall2012_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
+x <- rbind(x, list("ModFrequent", "Fall2012", Fall2012_Mod_Frequent_Peak_Percentage))
+x <- rbind(x, list("Ocassional", "Fall2012", Fall2012_Ocassional_Peak_Percentage))
+x <- rbind(x, list("Infrequent", "Fall2012", Fall2012_Infrequent_Peak_Percentage))
 y <- data.frame("GymType" = "Frequent", "Packedness" = "NonPeak", "Percentage" = Fall2012_Frequent_Non_Peak_Percentage, stringsAsFactors = FALSE)
 y <- rbind(y, list("ModFrequent", "NonPeak", Fall2012_Mod_Frequent_Non_Peak_Percentage))
 y <- rbind(y, list("Ocassional", "NonPeak", Fall2012_Ocassional_Non_Peak_Percentage))
 y <- rbind(y, list("Infrequent", "NonPeak", Fall2012_Infrequent_Non_Peak_Percentage))
 
 
-x1 <- data.frame("GymType" = "Frequent", "Packedness" = "Peak", "Percentage" = Spring2013_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
-x1 <- rbind(x1, list("ModFrequent", "Peak", Spring2013_Mod_Frequent_Peak_Percentage))
-x1 <- rbind(x1, list("Ocassional", "Peak", Spring2013_Ocassional_Peak_Percentage))
-x1 <- rbind(x1, list("Infrequent", "Peak", Spring2013_Infrequent_Peak_Percentage))
+x1 <- data.frame("GymType" = "Frequent", "Semester" = "Spring2013", "Percentage" = Spring2013_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
+x1 <- rbind(x1, list("ModFrequent", "Spring2013", Spring2013_Mod_Frequent_Peak_Percentage))
+x1 <- rbind(x1, list("Ocassional", "Spring2013", Spring2013_Ocassional_Peak_Percentage))
+x1 <- rbind(x1, list("Infrequent", "Spring2013", Spring2013_Infrequent_Peak_Percentage))
 y1 <- data.frame("GymType" = "Frequent", "Packedness" = "NonPeak", "Percentage" = Spring2013_Frequent_Non_Peak_Percentage, stringsAsFactors = FALSE)
 y1 <- rbind(y1, list("ModFrequent", "NonPeak", Spring2013_Mod_Frequent_Non_Peak_Percentage))
 y1 <- rbind(y1, list("Ocassional", "NonPeak", Spring2013_Ocassional_Non_Peak_Percentage))
 y1 <- rbind(y1, list("Infrequent", "NonPeak", Spring2013_Infrequent_Non_Peak_Percentage))
 
 
+x2 <- data.frame("GymType" = "Frequent", "Semester" = "Summer2013", "Percentage" = Spring2013_Frequent_Peak_Percentage, stringsAsFactors = FALSE)
+x2 <- rbind(x2, list("ModFrequent", "Summer2013", Spring2013_Mod_Frequent_Peak_Percentage))
+x2 <- rbind(x2, list("Ocassional", "Summer2013", Spring2013_Ocassional_Peak_Percentage))
+x2 <- rbind(x2, list("Infrequent", "Summer2013", Spring2013_Infrequent_Peak_Percentage))
+x2$GymType <- factor(x2$GymType, levels=x2$GymType)
+
+
 x1$GymType <- factor(x1$GymType, levels=x1$GymType)
+
 y1$GymType <- factor(y1$GymType, levels=x1$GymType)
 
 #This will make sure that the order of gymtype is maintained by ggplot
@@ -299,21 +297,23 @@ g <- ggplot(x, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),positio
     xlab("Packedness")+ylab("Percentages")+ggtitle("Peak Percentages in Fall 2012")+
     scale_fill_manual(values=ColorPalette)
 
+z <- rbind(x, x1)
+z <- rbind(z, x2)
+
+z_plot <- ggplot(z, aes(Semester, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
+  xlab("Semester")+ylab("Percentages")+ggtitle("Peak Percentages in 2012-2013")+
+  scale_fill_manual(values=ColorPalette)
 
 h <- ggplot(x1, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
   xlab("Packedness")+ylab("Percentages")+ggtitle("Peak Percentages in Spring 2013")+
   scale_fill_manual(values=ColorPalette)
 
-
-
 g1 <- ggplot(y, aes(Packedness, Percentage)) + geom_bar(aes(fill=GymType),position="dodge",stat="identity",width=.55)+
   xlab("Packedness")+ylab("Percentages")+ggtitle("Non Peak Percentages in Fall 2012")+
   scale_fill_manual(values=ColorPalette)
 
-
 Fall2012_Times_Frequent = Fall2012_Times_Frequent %>% separate(TRANDATE, c('Date', 'Time'), sep = " ")
 Fall2012_Peak_Count <- subset(Fall2012_Times_Frequent, Time>="14:00:00" & Time<="19:30:00")
-
 
 patron <- 332738 #Went 158 times
 student <- T20123[T20123$PATRONID.x == patron, ]
